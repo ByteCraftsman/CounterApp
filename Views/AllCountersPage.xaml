@@ -1,0 +1,140 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CounterApp.Views.AllCountersPage"
+             Title="Your Counters">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="Add" 
+            Clicked="Add_Clicked"
+            IconImageSource="{FontImage Glyph='+', Color=Black, Size=40}"/>
+    </ContentPage.ToolbarItems>
+
+    <CollectionView x:Name="countersCollection"
+                    ItemsSource="{Binding Counters}"
+                    Margin="20"
+                    SelectionMode="Single">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame Padding="0" Margin="0" CornerRadius="10" HasShadow="True" BackgroundColor="{Binding ColorHex}">
+                    <Grid Padding="0" VerticalOptions="CenterAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Row="0" Grid.ColumnSpan="3" BackgroundColor="#333333" Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Name}" FontSize="22" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start"/>
+
+                            <ImageButton Source="edit_icon.png"
+                                         WidthRequest="30"
+                                         HeightRequest="30"
+                                         MinimumWidthRequest="20"
+                                         MinimumHeightRequest="20"
+                                         Clicked="EditButton_Clicked"
+                                         BackgroundColor="Transparent"
+                                         Margin="5, 0, 5, 0"
+                                         VerticalOptions="Center" 
+                                         HorizontalOptions="End"
+                                         Grid.Column="1"/>
+
+                            <ImageButton Source="reset_icon.png"
+                                         WidthRequest="30"
+                                         HeightRequest="30"
+                                         MinimumWidthRequest="20"
+                                         MinimumHeightRequest="20"
+                                         Clicked="ResetButton_Clicked"
+                                         BackgroundColor="Transparent"
+                                         Margin="5, 0, 5, 0"
+                                         VerticalOptions="Center" 
+                                         HorizontalOptions="End"
+                                         Grid.Column="2"/>
+
+                            <ImageButton Source="trash_icon.png"
+                                         WidthRequest="30"
+                                         HeightRequest="30"
+                                         MinimumWidthRequest="20"
+                                         MinimumHeightRequest="20"
+                                         Clicked="DeleteButton_Clicked"
+                                         BackgroundColor="Transparent"
+                                         Margin="5, 0, 5, 0"
+                                         VerticalOptions="Center" 
+                                         HorizontalOptions="End"
+                                         Grid.Column="3"/>
+                        </Grid>
+                        
+                        <Grid Grid.Row="1" Grid.ColumnSpan="3" Padding="10" VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Text="-"
+                                    Grid.Column="0"
+                                    BackgroundColor="#D22B2B"
+                                    TextColor="White"
+                                    FontSize="24"
+                                    WidthRequest="45"
+                                    HeightRequest="45"
+                                    CornerRadius="20"
+                                    Clicked="DecrementButton_Clicked" 
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center">
+                                <Button.Shadow>
+                                    <Shadow Brush="Black" Radius="10" Offset="3,3"/>
+                                </Button.Shadow>
+                            </Button>
+
+
+                            <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="{Binding Value}" FontSize="66" HorizontalOptions="Center" TextColor="White">
+                                    <Label.Shadow>
+                                        <Shadow Brush="Black" Radius="5" Offset="3,3"/>
+                                    </Label.Shadow>
+                                </Label>
+                                <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy HH:mm:ss}'}" FontSize="16" HorizontalOptions="Center" TextColor="White">
+                                    <Label.Shadow>
+                                        <Shadow Brush="Black" Radius="1" Offset="1,1"/>
+                                    </Label.Shadow>
+                                </Label>
+                            </StackLayout>
+                            
+                            <Button Text="+"
+                                    Grid.Column="2"
+                                    BackgroundColor="#228B22"
+                                    TextColor="White"
+                                    FontSize="24"
+                                    WidthRequest="45"
+                                    HeightRequest="45"
+                                    CornerRadius="20"
+                                    Clicked="IncrementButton_Clicked" 
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center">
+                                <Button.Shadow>
+                                    <Shadow Brush="Black" Radius="10" Offset="3,3"/>
+                                </Button.Shadow>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

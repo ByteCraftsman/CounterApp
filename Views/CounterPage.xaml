@@ -1,0 +1,120 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gauge="clr-namespace:Syncfusion.Maui.Gauges;assembly=Syncfusion.Maui.Gauges"
+             x:Class="CounterApp.Views.CounterPage"
+             Title="Counter">
+    <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand">
+        <StackLayout Padding="10" Spacing="15">
+            <StackLayout Orientation="Vertical" Padding="20, 10, 0, 10">
+            <Label Text="Podaj nazwę licznika:"
+                   FontSize="Medium"
+                   VerticalOptions="Start"
+                   TextColor="White" />
+            <Entry x:Name="TextEntry"
+                Text="{Binding Name}"
+                Placeholder="Nazwa licznika (domyślnie: licznik)"
+                HorizontalOptions="Start"
+                WidthRequest="300"
+                HeightRequest="50"
+                Margin="0,20,0,0" />  
+
+            </StackLayout>
+
+        <Label Text="Wybierz wartość domyślną:"
+               FontSize="Medium"
+               VerticalOptions="Start"
+               TextColor="White"
+               Padding="20, 10, 0, 10"/>
+
+        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+            <gauge:SfRadialGauge Background="#1F1F1F" WidthRequest="350" HeightRequest="350">
+                <gauge:SfRadialGauge.Axes>
+                    <gauge:RadialAxis
+                        ShowTicks="False" 
+                        ShowLabels="True" 
+                        Minimum="0" 
+                        Maximum="1002"
+                        Interval="100"
+                        StartAngle="270"
+                        EndAngle="630">
+                        <gauge:RadialAxis.AxisLineStyle>
+                            <gauge:RadialLineStyle Fill="#BFD6F5" Thickness="10"/>
+                        </gauge:RadialAxis.AxisLineStyle>
+
+                        <gauge:RadialAxis.Pointers>
+                            <gauge:RangePointer Value="{Binding Source={x:Reference defaultValuePointer}, Path=Value}"
+                                                CornerStyle="BothCurve"
+                                                Fill="#2194f3"
+                                                PointerWidth="10"/>
+                            <gauge:ShapePointer x:Name="defaultValuePointer" ShapeType="Circle"
+                                                HasShadow="True"
+                                                Value="0"
+                                                IsInteractive="True"
+                                                ShapeHeight="30"
+                                                ShapeWidth="30"
+                                                Fill="#2194f3"/>
+                        </gauge:RadialAxis.Pointers>
+                    </gauge:RadialAxis>
+                </gauge:SfRadialGauge.Axes>
+            </gauge:SfRadialGauge>
+
+            <Label x:Name ="defaultValueLabel" Text="{Binding Source={x:Reference defaultValuePointer}, Path=Value, StringFormat='{}{0:F0}'}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="24"
+                   TextColor="White"/>
+        </Grid>
+
+        <Label Text="Wybierz kolor licznika:"
+           FontSize="Medium"
+           VerticalOptions="Start"
+           TextColor="White"
+           Padding="20, 10, 0, 10"/>
+        
+        <ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Grid Padding="20, 10, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Button BackgroundColor="Red" Grid.Row="0" Grid.Column="0" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Green" Grid.Row="0" Grid.Column="1" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Blue" Grid.Row="0" Grid.Column="2" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Yellow" Grid.Row="0" Grid.Column="3" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Purple" Grid.Row="0" Grid.Column="4" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Orange" Grid.Row="0" Grid.Column="5" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Cyan" Grid.Row="0" Grid.Column="6" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Magenta" Grid.Row="0" Grid.Column="7" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+
+                    <Button BackgroundColor="LightGray" Grid.Row="1" Grid.Column="0" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Pink" Grid.Row="1" Grid.Column="1" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="LightGreen" Grid.Row="1" Grid.Column="2" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="LightBlue" Grid.Row="1" Grid.Column="3" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Olive" Grid.Row="1" Grid.Column="4" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Teal" Grid.Row="1" Grid.Column="5" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Coral" Grid.Row="1" Grid.Column="6" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                    <Button BackgroundColor="Navy" Grid.Row="1" Grid.Column="7" HeightRequest="30" WidthRequest="30" Clicked="ColorButton_Clicked" Margin="5"/>
+                </Grid>
+            </ScrollView>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="20">
+            <Button Text="Zapisz" Clicked="SaveButton_Clicked" HorizontalOptions="FillAndExpand"/>
+            <Button Text="Usuń" Clicked="DeleteButton_Clicked" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    </StackLayout>
+    </ScrollView>
+</ContentPage>
